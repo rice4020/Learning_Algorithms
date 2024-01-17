@@ -1,6 +1,4 @@
 #include <iostream>
-#include <string>
-
 
 struct binary_tree
 {
@@ -9,7 +7,7 @@ struct binary_tree
 	binary_tree* right = nullptr;
 };
 
-// ¹ÙÀÌ³Ê¸® Æ®¸® °ª Ãß°¡
+// ë°”ì´ë„ˆë¦¬ íŠ¸ë¦¬ ê°’ ì¶”ê°€
 void add_tree(binary_tree* head,int add_num) {
 	binary_tree* under_tree=new binary_tree;
 	if (add_num < head->my_self) {
@@ -30,7 +28,7 @@ void add_tree(binary_tree* head,int add_num) {
 	}
 }
 
-// ¹ÙÀÌ³Ê¸® Æ®¸® °ª »èÁ¦
+// ë°”ì´ë„ˆë¦¬ íŠ¸ë¦¬ ê°’ ì‚­ì œ
 void delete_tree(binary_tree* head) {
 	if (head == nullptr) {
 		return;
@@ -41,20 +39,20 @@ void delete_tree(binary_tree* head) {
 	delete head;
 }
 
-// ¹ÙÀÌ³Ê¸® Æ®¸® °ª Ãâ·Â
+// ë°”ì´ë„ˆë¦¬ íŠ¸ë¦¬ ê°’ ì¶œë ¥
 void print_tree(binary_tree* head) {
 	if (head == nullptr) {
 		return;
 	}
 
-	// ¿À¸¥ÂÊ ÀÚ½Ä ³ëµå Ãâ·Â
+	// ì˜¤ë¥¸ìª½ ìì‹ ë…¸ë“œ ì¶œë ¥
 	print_tree(head->right);
 
 
-	// ÇöÀç ³ëµåÀÇ µ¥ÀÌÅÍ Ãâ·Â
+	// í˜„ì¬ ë…¸ë“œì˜ ë°ì´í„° ì¶œë ¥
 	std::cout << head->my_self << std::endl;
 
-	// ¿ŞÂÊ ÀÚ½Ä ³ëµå Ãâ·Â
+	// ì™¼ìª½ ìì‹ ë…¸ë“œ ì¶œë ¥
 	print_tree(head->left);
 }
 
