@@ -1,6 +1,6 @@
 #include <iostream>
 
-struct variable_int {// int ¹üÀ§ º¸´Ù Å« ¼ö¸¦ ÀúÀåÇÏ±â À§ÇÔ ±¸Á¶Ã¼ (10¾ï´ÜÀ§ÀÇ int¸¦ ÀÌ¾îºÙ¿© Å« ¼ö¸¦ ÀúÀåÇÔ)
+struct variable_int {// int ë²”ìœ„ ë³´ë‹¤ í° ìˆ˜ë¥¼ ì €ì¥í•˜ê¸° ìœ„í•¨ êµ¬ì¡°ì²´ (10ì–µë‹¨ìœ„ì˜ intë¥¼ ì´ì–´ë¶™ì—¬ í° ìˆ˜ë¥¼ ì €ì¥í•¨)
 private:
 	int array_size = 1;
 	int* array_ptr;
@@ -12,10 +12,10 @@ public:
 	variable_int(int size) :array_size(size) { 
 		array_ptr = new int[array_size]();
 		array_ptr[array_size - 1] = 1;
-	}	// variable_intÀÇ ¸Ş¸ğ¸® Å©±â = (¼ıÀÚ)*sizeof(int)
+	}	// variable_intì˜ ë©”ëª¨ë¦¬ í¬ê¸° = (ìˆ«ì)*sizeof(int)
 
-	int* need_more_memory() {			//int ¸Ş¸ğ¸® ´Ã¸®´Â ÇÔ¼ö
-		int* previous_value = new int[array_size]();			//³í¸® ¿À·ù : ÀÌÀü °ª ÀÌ¿ùÀÌ µÇÁö ¾ÊÀ½
+	int* need_more_memory() {			//int ë©”ëª¨ë¦¬ ëŠ˜ë¦¬ëŠ” í•¨ìˆ˜
+		int* previous_value = new int[array_size]();			//ë…¼ë¦¬ ì˜¤ë¥˜ : ì´ì „ ê°’ ì´ì›”ì´ ë˜ì§€ ì•ŠìŒ
 		for (int i = 0; i < array_size; i++) {
 			previous_value[i] = array_ptr[i];
 		}
@@ -28,7 +28,7 @@ public:
 		}
 		return array_ptr;
 	}
-	void get_int(int* input) {	//¾ÆÁ÷ Å« ¸Ş¸ğ¸®°¡ ÇÊ¿äÇÏÁö ¾ÊÀº int °ª ¾ò´Â ÇÔ¼ö
+	void get_int(int* input) {	//ì•„ì§ í° ë©”ëª¨ë¦¬ê°€ í•„ìš”í•˜ì§€ ì•Šì€ int ê°’ ì–»ëŠ” í•¨ìˆ˜
 		array_ptr = input;
 	}
 	void get_int(int* input, int array_spot) {
@@ -38,7 +38,7 @@ public:
 		array_ptr[array_spot] += *input_int;
 	}
 
-	int* out_int_ptr() {	// ÀüÃ¼ int ¹İÈ¯ Á¢±Ù ÇÔ¼ö
+	int* out_int_ptr() {	// ì „ì²´ int ë°˜í™˜ ì ‘ê·¼ í•¨ìˆ˜
 		return array_ptr;
 	}
 	int out_array_size() {
@@ -57,13 +57,12 @@ public:
 	}
 };
 class factorial_calculation {
-	int this_factorial = 1; // Áö±İ °öÇÒ ÆÑÅä¸®¾ó ¹øÂ° ÀúÀå º¯¼ö
+	int this_factorial = 1; // ì§€ê¸ˆ ê³±í•  íŒ©í† ë¦¬ì–¼ ë²ˆì§¸ ì €ì¥ ë³€ìˆ˜
 
-	void Over_factorial_algorithm(variable_int* variable,int* factorial_num) {//ÆÑÅä¸®¾ó °á°ú°¡ 10¾ïÀÌ ³ÑÀº °æ¿ìÀÇ ¾Ë°í¸®Áò ÇÔ¼ö
+	void Over_factorial_algorithm(variable_int* variable,int* factorial_num) {//íŒ©í† ë¦¬ì–¼ ê²°ê³¼ê°€ 10ì–µì´ ë„˜ì€ ê²½ìš°ì˜ ì•Œê³ ë¦¬ì¦˜ í•¨ìˆ˜
 		int int_size = variable->out_array_size();
-		int* variable_int_ptr = variable->out_int_ptr();
 
-		for (; this_factorial <= *factorial_num; this_factorial++) { //ÆÑÅä¸®¾ó Å©±â¸¸Å­ ¹İº¹ÇÏ´Â ¹İº¹¹®
+		for (; this_factorial <= *factorial_num; this_factorial++) { //íŒ©í† ë¦¬ì–¼ í¬ê¸°ë§Œí¼ ë°˜ë³µí•˜ëŠ” ë°˜ë³µë¬¸
 			int calculation_option = 1;
 			int_size = variable->out_array_size();
 			for (int i = 0; i < int_size; i++) {
@@ -76,7 +75,6 @@ class factorial_calculation {
 						variable->need_more_memory();
 						variable->out_int_ptr()[i] += up_int;
 						calculation_option = 0;
-						variable_int_ptr = variable->out_int_ptr();////
 					}
 					else {
 						calculation_option == 0 ? variable->out_int_ptr()[i] += up_int : variable->out_int_ptr()[i - 1] += up_int;;
@@ -91,7 +89,7 @@ class factorial_calculation {
 
 public:
 	int factorial(int* factorial_num) {
-		if (*factorial_num > 12) {		// ÆÑÅä¸®¾ó °ªÀÌ intÀÇ ¹üÀ§¸¦ ¹ş¾î³¯ ¶§
+		if (*factorial_num > 12) {		// íŒ©í† ë¦¬ì–¼ ê°’ì´ intì˜ ë²”ìœ„ë¥¼ ë²—ì–´ë‚  ë•Œ
 			variable_int* variable = new variable_int;
 			Over_factorial_algorithm(variable, factorial_num);
 			std::cout << "\n" << std::endl;
